@@ -6,14 +6,11 @@ using TMPro;
 public class ContentItem : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
-    public TextMeshProUGUI idText;
-    public TextMeshProUGUI thText;
+    public TextMeshProUGUI tagText;
 
-
-    public void Setup(string name, string id, string thLevel)
+    public virtual void Setup(string name, string tag)
     {
         nameText.text = name;
-        idText.text = id;
-        thText.text = thLevel;
+        tagText.text = tag;
     }
 }

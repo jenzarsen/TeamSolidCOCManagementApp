@@ -28,6 +28,7 @@ public class ClanUI : BaseUI
             if (ui.isConfirmed)
             {
                 SaveContainer.saveData.VerifyClanData(ui.GetID());
+                RefreshContent();
             }
         };
     }
@@ -39,6 +40,6 @@ public class ClanUI : BaseUI
 
     public void RefreshContent()
     {
-        
+        contentBuilder.RefreshContent();
     }
 }

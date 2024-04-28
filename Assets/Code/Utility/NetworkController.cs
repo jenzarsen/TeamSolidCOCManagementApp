@@ -56,7 +56,7 @@ class NetworkController : Singleton<NetworkController>
             clanTag += "%23";
         }
 
-        string requestURL = $"https://api.clashofclans.com/v1/clans/{clanTag}/members?limit=50";
+        string requestURL = $"https://api.clashofclans.com/v1/clans/{clanTag}";
 
         //UnityEngine.Debug.Log(requestURL);
 
@@ -124,9 +124,8 @@ class NetworkController : Singleton<NetworkController>
     {
         try
         {
-
             string clanData = await GetClanAsync(clanTag);
-            //UnityEngine.Debug.Log(clanData);
+            UnityEngine.Debug.Log(clanData);
             return clanData;
         }
         catch (Exception e)

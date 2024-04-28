@@ -3,15 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ClanItem : MonoBehaviour
+public class ClanItem : ContentItem
 {
-    public TextMeshProUGUI clanNameText;
-    public TextMeshProUGUI tagText;
-
-    public void Setup(string name, string tag, string thLevel)
-    {
-        clanNameText.text = name;
-        tagText.text = tag;
-    }
 
 }

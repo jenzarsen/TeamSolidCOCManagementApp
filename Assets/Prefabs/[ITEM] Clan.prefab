@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 2677775551990290296}
   - component: {fileID: 5573886506322532134}
   - component: {fileID: 3227468610661208471}
-  - component: {fileID: 828323288147734641}
   - component: {fileID: 6868751684366552484}
   m_Layer: 5
   m_Name: '[ITEM] Clan'
@@ -157,21 +156,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &828323288147734641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2793057675136941510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e4b3c01eb1cf1d458575be643064911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 0}
-  idText: {fileID: 0}
-  thText: {fileID: 0}
 --- !u!114 &6868751684366552484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14665ae26439d6245b6075f04cb980f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clanNameText: {fileID: 3296771675349183504}
+  nameText: {fileID: 3296771675349183504}
   tagText: {fileID: 5600770037075533280}
 --- !u!1 &5242696439204597571
 GameObject:

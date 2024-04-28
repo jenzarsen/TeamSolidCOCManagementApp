@@ -9,7 +9,7 @@ public class ContentBuilder : MonoBehaviour
 
     public ContentItem contentPrefab;
 
-    public Transform scrollView;
+    public Transform contentRoot;
 
     public virtual void RefreshContent()
     {

@@ -9,15 +9,23 @@ using Sirenix.OdinInspector;
 [System.Serializable]
 public class SaveData
 {
-    public List<Player> playerList = new List<Player>();
-    public List<Clan> clanList = new List<Clan>();
+    public List<Player> playerList;
+    public List<Clan> clanList;
 
     [System.Serializable]
     public class Clan
     {
-        public string clanTag;
-        public string clanName;
-        public List<string> clanMembers = new List<string>();
+        public string tag;
+        public string name;
+        public ClanMember[] memberList;
+    }
+
+    [System.Serializable]
+    public class ClanMember
+    {
+        public string tag;
+        public string name;
+        public int townHallLevel;
     }
 
     public void VerifyClanData(string clanTag)
@@ -27,36 +35,32 @@ public class SaveData
         if(string.IsNullOrEmpty(data) == false)
         {
             Debug.Log("Data has been downloaded");
-            //Debug.Log(data);
-        }
-    }
+            var clanData = JSONController.CreateClanFromJSON(data);
 
-    public Clan GetClanByTag(string tag)
-    {
-        return clanList.FirstOrDefault(clan => clan.clanTag.Equals(tag, StringComparison.OrdinalIgnoreCase));
-    }
+            var clan = clanList.FirstOrDefault(x => x.tag.Equals(clanData.tag));
 
-    public void AddClan(string tag, string name, List<string> members)
-    {
-        var clan = GetClanByTag(tag);
-
-        if(clan == null)
-        {
-            clan = new Clan()
+            if(clan != null)
             {
-                clanTag = tag,
-                clanName = name,
-                clanMembers = members
-            };
+                //Overwrite Clan Data
+                clan = clanData;
+            }
+            else
+            {
+                clanList.Add(clan);
+            }
 
-            clanList.Add(clan);
+            SaveContainer.SetDirty();
         }
-        else
-        {
-            clan.clanTag = tag;
-            clan.clanName = name;
-            clan.clanMembers = members;
-        }
+    }
+
+    public Clan GetClanByTag(string clanTag)
+    {
+        return clanList.FirstOrDefault(clan => clan.tag.Equals(clanTag, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public void AddClan(string clanTag, string clanName, List<string> members)
+    {
+
     }
 
 
@@ -84,7 +88,7 @@ public class SaveData
         if(playerList.Contains(player) == false)
         {
             playerList.Add(player);
-            SaveContainer.IsDirty = true;
+            SaveContainer.SetDirty();
         }
     }
 
@@ -110,7 +114,7 @@ public class SaveData
     {
         playerList.Add(newPlayer);
 
-        SaveContainer.IsDirty = true;
+        SaveContainer.SetDirty();
     }
 
     public bool IsPlayerIDExists(Player newPlayer)

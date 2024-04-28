@@ -64,8 +64,13 @@ public class SaveContainer : Singleton<SaveContainer>
         else
         {
             saveData = CreateNewPlayerData();
-            IsDirty = true;
+            SetDirty();
         }
+    }
+
+    public static void SetDirty()
+    {
+        IsDirty = true;
     }
 
 
