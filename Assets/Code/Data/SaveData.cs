@@ -5,20 +5,31 @@ using Unity.Mathematics;
 using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
+using System.Runtime.CompilerServices;
 
 [System.Serializable]
 public class SaveData
 {
-    public List<Player> playerList;
-    public List<Clan> clanList;
+    public List<Player> playerList = new ();
+    public List<Clan> clanList = new ();
 
     [System.Serializable]
     public class Clan
     {
         public string tag;
         public string name;
+        public BadgeURL badgeUrls;
         public ClanMember[] memberList;
     }
+
+    [System.Serializable]
+    public class BadgeURL
+    {
+        public string small;
+        public string large;
+        public string medium;
+    }
+
 
     [System.Serializable]
     public class ClanMember
@@ -39,15 +50,25 @@ public class SaveData
 
             var clan = clanList.FirstOrDefault(x => x.tag.Equals(clanData.tag));
 
-            if(clan != null)
+            Debug.Log(clanData.badgeUrls.medium);
+            if(clan == null)
             {
-                //Overwrite Clan Data
-                clan = clanData;
+                clan = new Clan() {
+                    tag = clanData.tag, 
+                    name = clanData.name, 
+                    memberList = clanData.memberList, 
+                    badgeUrls = clanData.badgeUrls};
+                clanList.Add(clan);
             }
             else
             {
-                clanList.Add(clan);
+                clan.tag = clanData.tag;
+                clan.name = clanData.name;
+                clan.memberList = clanData.memberList;
+                clan.badgeUrls = clanData.badgeUrls;
             }
+
+  
 
             SaveContainer.SetDirty();
         }

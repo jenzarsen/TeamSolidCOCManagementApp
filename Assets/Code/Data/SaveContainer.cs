@@ -9,6 +9,12 @@ public class SaveContainer : Singleton<SaveContainer>
     [SerializeField]
     public static SaveData saveData;
 
+
+    public class SaveWrapper
+    {
+        public SaveData save;
+    }
+
     public static bool IsDirty = false;
     string savePath => Application.persistentDataPath.ToString() + "/playerData.json";
 
@@ -35,6 +41,7 @@ public class SaveContainer : Singleton<SaveContainer>
     public void SavePlayerData()
     {
         string json = JsonUtility.ToJson(saveData);
+
         File.WriteAllText(savePath, json);
 
         Debug.Log("Save successfully");
@@ -86,7 +93,7 @@ public class SaveContainer : Singleton<SaveContainer>
     [Button]
     public void ViewPlayerList()
     {
-        saveData.playerList.ForEach(x => Debug.Log(x.name));
+        saveData.clanList.ForEach(x => Debug.Log(x.tag));
     }
 
     [Button]
@@ -113,6 +120,7 @@ public class SaveContainer : Singleton<SaveContainer>
         if(File.Exists(savePath))
         {
             File.Delete(savePath);
+            SetDirty();
             Debug.Log("Save deleted successfully");
         }
         else

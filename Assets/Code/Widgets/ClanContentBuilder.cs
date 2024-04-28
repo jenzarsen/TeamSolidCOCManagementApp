@@ -13,8 +13,8 @@ public class ClanContentBuilder : ContentBuilder
         foreach(var clan in SaveContainer.saveData.clanList)
         {
             var newItem = GameObject.Instantiate(contentPrefab, contentRoot).GetComponent<ClanItem>();
-            newItem.Setup(clan.name, clan.tag);
 
+            newItem.Setup(clan);
             newItem.gameObject.SetActive(true);
 
             items.Add(newItem);

@@ -8,9 +8,9 @@ public class ContentItem : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI tagText;
 
-    public virtual void Setup(string name, string tag)
+    public virtual void Setup(SaveData.Clan clan)
     {
-        nameText.text = name;
-        tagText.text = tag;
+        nameText.text = clan?.name;
+        tagText.text = clan?.tag;
     }
 }
