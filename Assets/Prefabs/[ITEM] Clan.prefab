@@ -91,7 +91,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2677775551990290296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -435,8 +435,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ' #9L82LUOQ'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 39efd88227f0ae54d8f5571e688b8bdf, type: 2}
+  m_sharedMaterial: {fileID: -1526106692350768505, guid: 39efd88227f0ae54d8f5571e688b8bdf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -570,8 +570,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "TEAM SOLID \u2605\u2605\u2605\u2605"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 39efd88227f0ae54d8f5571e688b8bdf, type: 2}
+  m_sharedMaterial: {fileID: -1526106692350768505, guid: 39efd88227f0ae54d8f5571e688b8bdf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

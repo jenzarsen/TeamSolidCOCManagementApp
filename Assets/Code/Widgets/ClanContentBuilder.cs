@@ -14,7 +14,7 @@ public class ClanContentBuilder : ContentBuilder
         {
             var newItem = GameObject.Instantiate(contentPrefab, contentRoot).GetComponent<ClanItem>();
 
-            newItem.Setup(clan);
+            newItem.SetData(clan);
             newItem.gameObject.SetActive(true);
 
             items.Add(newItem);

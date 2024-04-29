@@ -6,11 +6,14 @@ using TMPro;
 public class ContentItem : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
-    public TextMeshProUGUI tagText;
 
-    public virtual void Setup(SaveData.Clan clan)
+    public virtual void SetData<T>(T data)
     {
-        nameText.text = clan?.name;
-        tagText.text = clan?.tag;
+
+    }
+
+    protected virtual void Setup()
+    {
+
     }
 }

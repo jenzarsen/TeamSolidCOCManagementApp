@@ -10,6 +10,9 @@ public class ClanItem : ContentItem
 {
     SaveData.Clan currentClan;
 
+    public TextMeshProUGUI tagText;
+
+
     [SerializeField] RawImage clanIcon;
     IEnumerator DownloadImage(string MediaUrl)
     {
@@ -27,9 +30,15 @@ public class ClanItem : ContentItem
         StartCoroutine(DownloadImage(currentClan.badgeUrls.medium));
     }
 
-    public override void Setup(SaveData.Clan clan)
+    public override void SetData<T>(T clan)
     {
-        currentClan = clan;
-        base.Setup(clan);
+        currentClan = clan as SaveData.Clan;
+        Setup();
+    }
+
+    protected override void Setup()
+    {
+        nameText.text = currentClan?.name;
+        tagText.text = currentClan?.tag;
     }
 }

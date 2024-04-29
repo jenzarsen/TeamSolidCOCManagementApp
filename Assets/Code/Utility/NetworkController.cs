@@ -25,7 +25,12 @@ class NetworkController : Singleton<NetworkController>
     //Get Player Data
     public static async Task<string> GetPlayerAsync(string playerID)
     {
+        UnityEngine.Debug.Log($"Searching for player tag {playerID}");
+
         string data = null;
+
+        playerID = StringHelper.GetWebTagConversion(playerID);
+
         HttpResponseMessage response = await client.GetAsync($"https://api.clashofclans.com/v1/players/{playerID}");
 
         UnityEngine.Debug.Log(playerID);
@@ -46,16 +51,8 @@ class NetworkController : Singleton<NetworkController>
         UnityEngine.Debug.Log($"Searching for clan tag {clanTag}");
         string data = null;
 
-
-        if (clanTag.Contains("#"))
-        {
-            clanTag = clanTag.Replace("#", "%23");
-        }
-        else
-        {
-            clanTag += "%23";
-        }
-
+        clanTag = StringHelper.GetWebTagConversion(clanTag);
+       
         string requestURL = $"https://api.clashofclans.com/v1/clans/{clanTag}";
 
         //UnityEngine.Debug.Log(requestURL);
