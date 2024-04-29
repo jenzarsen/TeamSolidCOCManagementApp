@@ -23,7 +23,13 @@ public class UIController : Singleton<UIController>
 
     public void HideAllUI()
     {
-        baseUIs.ForEach(x => x.Hide());
+        foreach(var ui in baseUIs)
+        {
+            if(ui is not MainUI)
+            {
+                ui.Hide();
+            }
+        }
     }
 
     public static T GetUI<T>() where T : BaseUI

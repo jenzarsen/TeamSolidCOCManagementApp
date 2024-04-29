@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class BaseUI : MonoBehaviour
 {
@@ -40,5 +41,11 @@ public class BaseUI : MonoBehaviour
     {
         gameObject.SetActive(false);
         OnFinishShow();
+    }
+
+    public void SetupButton(Button button, UnityAction andThen = null)
+    {
+        button?.onClick.RemoveAllListeners();
+        button?.onClick.AddListener(() => andThen?.Invoke());
     }
 }

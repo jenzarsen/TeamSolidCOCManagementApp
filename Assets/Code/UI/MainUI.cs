@@ -7,19 +7,26 @@ public class MainUI : BaseUI
 {
     public Button clanListButton;
     public Button refreshDataButton;
+    public Button playerListButton;
 
     public override void Initialize()
     {
-        clanListButton.onClick.RemoveAllListeners();
-        clanListButton.onClick.AddListener(() => ShowClanUI());
-
-        refreshDataButton.onClick.RemoveAllListeners();
-        refreshDataButton.onClick.AddListener(() => RefreshData());
+        SetupButton(clanListButton, () => ShowClanUI());
+        SetupButton(playerListButton, () => ShowPlayerUI());
+        SetupButton(refreshDataButton, () => RefreshData());
     }
 
     public void ShowClanUI()
     {
+        UIController.instance.HideAllUI();
         ClanUI ui = UIController.GetUI<ClanUI>();
+        ui.Show();
+    }
+
+    public void ShowPlayerUI()
+    {
+        UIController.instance.HideAllUI();
+        PlayerUI ui = UIController.GetUI<PlayerUI>();
         ui.Show();
     }
 

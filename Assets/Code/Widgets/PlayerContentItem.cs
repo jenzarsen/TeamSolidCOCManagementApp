@@ -15,6 +15,5 @@ public class PlayerContentItem : ContentItem
     protected override void Setup()
     {
         nameText.text = currentPlayer?.name;
-        tagT.text = currentPlayer?.tag;
     }
 }
