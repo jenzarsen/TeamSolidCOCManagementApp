@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerContentBuilder : ContentBuilder
@@ -10,11 +11,17 @@ public class PlayerContentBuilder : ContentBuilder
         items.Clear();
 
         Debug.Log("Refreshing Player Content...");
-        foreach (var player in SaveContainer.saveData.memberList)
+
+        var orderedMembers = SaveContainer.saveData.memberList.OrderByDescending(x => x.GetTotalArmyLevel()).ToArray();
+
+        for(int i = 0; i < orderedMembers.Length; i++)
         {
+            var member = orderedMembers[i];
+
             var newItem = GameObject.Instantiate(contentPrefab, contentRoot).GetComponent<PlayerContentItem>();
 
-            newItem.SetData(player);
+            newItem.SetIndex(i + 1);
+            newItem.SetData(member);
             newItem.gameObject.SetActive(true);
 
             items.Add(newItem);

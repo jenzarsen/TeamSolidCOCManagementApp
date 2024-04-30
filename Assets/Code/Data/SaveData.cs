@@ -10,8 +10,12 @@ using System.Runtime.CompilerServices;
 [System.Serializable]
 public class SaveData
 {
+
     public List<ClanMember> memberList = new ();
     public List<Clan> clanList = new ();
+
+    const string HOME_VILLAGE = "home";
+    const string BUILDER_BASE = "builderBase";
 
     [System.Serializable]
     public class Clan
@@ -79,6 +83,7 @@ public class SaveData
         //public Label[] labels;
 
         public Troop[] troops;
+        public Hero[] heroes;
         public Equipment[] heroEquipment;
         public Spell[] spells;
 
@@ -108,17 +113,44 @@ public class SaveData
             this.clanTag = member.clanTag;
 
             this.troops = member.troops;
+            this.heroes = member.heroes;
             this.heroEquipment = member.heroEquipment;
             this.spells = member.spells;
         }
+
+        public int GetTroopsLevel()
+        {
+            return troops.Where(troop => troop.village.Equals(HOME_VILLAGE)).Sum(y => y.level);
+        }
+
+        public int GetHeroesLevel()
+        {
+            return heroes.Where(hero => hero.village.Equals(HOME_VILLAGE)).Sum(y => y.level);
+        }
+
+        public int GetEquipmentsLevel()
+        {
+            return heroEquipment.Where(equipment => equipment.village.Equals(HOME_VILLAGE)).Sum(y => y.level);
+        }
+
+        public int GetSpellsLevel()
+        {
+            return spells.Where(spell => spell.village.Equals(HOME_VILLAGE)).Sum(y => y.level);
+        }
+
+        public int GetTotalArmyLevel()
+        {
+            return GetTroopsLevel() + GetHeroesLevel() + GetEquipmentsLevel() + GetSpellsLevel();
+        }
+
     }
 
     [System.Serializable]
     public class Entity
     {
         public string name;
-        public string level;
-        public string maxLevel;
+        public int level;
+        public int maxLevel;
         public string village;
     }
 

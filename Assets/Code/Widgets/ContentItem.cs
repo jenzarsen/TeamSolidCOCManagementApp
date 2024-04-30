@@ -9,6 +9,8 @@ public class ContentItem : MonoBehaviour
 {
     public Image bg;
     public CanvasGroup canvasGroup;
+
+    public TextMeshProUGUI indexText;
     public TextMeshProUGUI nameText;
 
     RectTransform rectTransform;
@@ -16,6 +18,11 @@ public class ContentItem : MonoBehaviour
     private void Awake()
     {
         rectTransform = transform as RectTransform;
+    }
+
+    public void SetIndex(int index)
+    {
+        indexText.text = index.ToString();
     }
 
     public virtual void SetData<T>(T data)
