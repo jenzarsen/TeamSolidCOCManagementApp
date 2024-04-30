@@ -2115,7 +2115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
-  contentPrefab: {fileID: 0}
+  contentPrefab: {fileID: 4488389921521744602, guid: 7727cc59a5a29874bb7e78c9a97773f4, type: 3}
   contentRoot: {fileID: 1241068910}
 --- !u!1 &885739898
 GameObject:

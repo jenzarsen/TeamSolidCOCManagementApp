@@ -27,7 +27,10 @@ public class ClanItem : ContentItem
     private void OnEnable()
     {
         //Debug.Log(currentClan.badgeUrls.medium);
-        StartCoroutine(DownloadImage(currentClan.badgeUrls.medium));
+        if(currentClan != null)
+        {
+            StartCoroutine(DownloadImage(currentClan.badgeUrls.medium));
+        }
     }
 
     public override void SetData<T>(T clan)

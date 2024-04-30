@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PlayerContentBuilder : ContentBuilder
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void RefreshContent()
     {
-        
-    }
+        items.ForEach(x => GameObject.Destroy(x.gameObject));
+        items.Clear();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("Refreshing Player Content...");
+        foreach (var player in SaveContainer.saveData.memberList)
+        {
+            var newItem = GameObject.Instantiate(contentPrefab, contentRoot).GetComponent<PlayerContentItem>();
+
+            newItem.SetData(player);
+            newItem.gameObject.SetActive(true);
+
+            items.Add(newItem);
+        }
     }
 }

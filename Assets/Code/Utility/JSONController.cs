@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class JSONController : MonoBehaviour
 {
-    public static SaveData.Clan CreateClanFromJSON(string json)
+    public static T CreateFromJSON<T>(string json)
     {
-        return JsonUtility.FromJson<SaveData.Clan>(json);
+        return JsonUtility.FromJson<T>(json);
     }
 }

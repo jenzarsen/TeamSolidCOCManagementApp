@@ -57,7 +57,6 @@ class NetworkController : Singleton<NetworkController>
 
         //UnityEngine.Debug.Log(requestURL);
 
-
         HttpResponseMessage response = await client.GetAsync(requestURL);
 
         response.EnsureSuccessStatusCode();
@@ -89,24 +88,25 @@ class NetworkController : Singleton<NetworkController>
         //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
 
-    public void DownloadPlayerData(string playerID)
+    public string DownloadPlayerData(string playerID)
     {
-        Task.Run(() => RunPlayerAsync(playerID));
+        return Task.Run(() => RunPlayerAsync(playerID)).Result;
     }
 
-    public async Task RunPlayerAsync(string playerID)
+    public async Task<string> RunPlayerAsync(string playerID)
     {
 
         UnityEngine.Debug.Log(playerID);
         try
         {
-           
             string playerData = await GetPlayerAsync(playerID);
-            UnityEngine.Debug.Log(playerData);
+            //UnityEngine.Debug.Log(playerData);
+            return playerData;
         }
         catch (Exception e)
         {
             UnityEngine.Debug.Log("Failed to get player data...");
+            return null;
         }
     }
 
