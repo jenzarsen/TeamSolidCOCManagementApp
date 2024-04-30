@@ -2,11 +2,14 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class UIController : Singleton<UIController>
 {
     [Sirenix.OdinInspector.ShowInInspector, ReadOnly]
     static List<BaseUI> baseUIs = new List<BaseUI>();
+
+    public RectTransform bgRect;
 
     protected override void Awake()
     {
