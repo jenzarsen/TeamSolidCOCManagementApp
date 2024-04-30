@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerContentItem : ContentItem
 {
-    SaveData.Player currentPlayer;
+    SaveData.ClanMember currentPlayer;
 
     public override void SetData<T>(T player)
     {
-        currentPlayer = player as SaveData.Player;
+        currentPlayer = player as SaveData.ClanMember;
         Setup();
     }
 

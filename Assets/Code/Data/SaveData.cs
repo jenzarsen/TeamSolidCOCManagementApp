@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 [System.Serializable]
 public class SaveData
 {
-    public List<Player> playerList = new ();
+    public List<ClanMember> playerList = new ();
     public List<Clan> clanList = new ();
 
     [System.Serializable]
@@ -37,7 +37,78 @@ public class SaveData
         public string tag;
         public string name;
         public int townHallLevel;
+        public int townHallWeaponLevel;
+        public int expLevel;
+        public int trophies;
+        public int bestTrophies;
+        public int warStars;
+
+        public int attackWins;
+        public int defenseWins;
+
+        //Builder Hall
+        public int builderHallLevel;
+        public int builderBaseTrophies;
+        public int bestBuilderBaseTrophies;
+
+
+        public string role;
+        public string warPreference;
+
+        public int donations;
+        public int donationsReceived;
+        public int clanCapitalContributions;
+
+        public Clan clan;
+
+        //Values below exists in Clash of Clans API but will not be implemented yet
+        //public League league;
+        //public BuilderBaseLeague builderBaseLeague;
+        //public LegendStatistics legendStatistics;
+        //public Achievements[] achievements;
+        //public PlayerHouse playerHouse;
+        //public Label[] labels;
+
+        public Troop[] troops;
+        public Equipment[] heroEquipment;
+        public Spell[] spells;
     }
+
+    [System.Serializable]
+    public class Entity
+    {
+        public string name;
+        public string level;
+        public string maxLevel;
+        public string village;
+    }
+
+    [System.Serializable]
+    public class Troop : Entity
+    {
+
+    }
+
+    [System.Serializable]
+    public class Hero : Entity
+    {
+        public Equipment[] equipment;
+    }
+
+    [System.Serializable]
+    public class Equipment : Entity
+    {
+
+    }
+
+
+    [System.Serializable]
+    public class Spell : Entity
+    {
+       
+    }
+
+
 
     public void VerifyClanData(string clanTag)
     {
@@ -78,79 +149,4 @@ public class SaveData
     {
         return clanList.FirstOrDefault(clan => clan.tag.Equals(clanTag, StringComparison.OrdinalIgnoreCase));
     }
-
-    public void AddClan(string clanTag, string clanName, List<string> members)
-    {
-
-    }
-
-
-    #region Player
-    [System.Serializable]
-    public class Player
-    {
-        public string id;
-        public string name;
-        public string th;
-    }
-
-    public void AddPlayer(string id, string name)
-    {
-        var player = GetPlayerById(id);
-
-        if(player == null)
-        {
-            player = new Player();
-        }
-
-        player.id = id;
-        player.name = name;
-
-        if(playerList.Contains(player) == false)
-        {
-            playerList.Add(player);
-            SaveContainer.SetDirty();
-        }
-    }
-
-    public void VerifyPlayerData(Player newPlayer)
-    {
-        NetworkController.instance.DownloadPlayerData(newPlayer.id);
-        //return;
-
-        //if (IsPlayerIDExists(newPlayer) == false)
-        //{
-        //    UnityEngine.Debug.Log("Player has been added to the database...");
-        //    AddNewPlayer(newPlayer);
-        //    return;
-        //}
-    }
-
-    public string UpdatePlayerData(Player newPlayer)
-    {
-        return "Player data has been updated...";
-    }
-
-    public void AddNewPlayer(Player newPlayer)
-    {
-        playerList.Add(newPlayer);
-
-        SaveContainer.SetDirty();
-    }
-
-    public bool IsPlayerIDExists(Player newPlayer)
-    {
-        return playerList.Any(x => x.id.Equals(newPlayer.id, System.StringComparison.OrdinalIgnoreCase));
-    }
-
-    public Player GetPlayerById(string id)
-    {
-        return playerList.FirstOrDefault(x => x.id == id);
-    }
-
-    public Player GetPlayerByName(string name)
-    { 
-        return playerList.FirstOrDefault(x => x.name == name);
-    }
-    #endregion
 }

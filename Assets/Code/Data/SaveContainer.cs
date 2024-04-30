@@ -84,37 +84,6 @@ public class SaveContainer : Singleton<SaveContainer>
 #if UNITY_EDITOR
 
     [Button]
-    public void AddPlayer()
-    {
-        saveData.AddPlayer("test", "Jenz");
-        IsDirty = true;
-    }
-
-    [Button]
-    public void ViewPlayerList()
-    {
-        saveData.clanList.ForEach(x => Debug.Log(x.tag));
-    }
-
-    [Button]
-    public void LoadPlayer(string name)
-    {
-        if(saveData == null)
-        {
-            Debug.LogError("Save data does not exist.");
-            return;
-        }
-
-        var player = saveData.GetPlayerByName(name);
-
-        if (player == null)
-        {
-            Debug.LogError("Player not found.");
-            return;
-        }
-    }
-
-    [Button]
     public void DeleteSaveData()
     {
         if(File.Exists(savePath))
