@@ -8,29 +8,37 @@ public class MainUI : BaseUI
     public Button clanListButton;
     public Button refreshDataButton;
     public Button playerListButton;
+    public Button clearDataButton;
 
     public override void Initialize()
     {
-        SetupButton(clanListButton, () => ShowClanUI());
-        SetupButton(playerListButton, () => ShowPlayerUI());
-        SetupButton(refreshDataButton, () => RefreshData());
+        SetupButton(clanListButton, () => OnShowClanUI());
+        SetupButton(playerListButton, () => OnShowPlayerUI());
+        SetupButton(refreshDataButton, () => OnRefreshData());
+        SetupButton(clearDataButton, () => OnClearData());
     }
 
-    public void ShowClanUI()
+    public void OnClearData()
+    {
+        UIController.instance.HideAllUI();
+        SaveContainer.instance.ClearData();
+    }
+
+    public void OnShowClanUI()
     {
         UIController.instance.HideAllUI();
         ClanUI ui = UIController.GetUI<ClanUI>();
         ui.Show();
     }
 
-    public void ShowPlayerUI()
+    public void OnShowPlayerUI()
     {
         UIController.instance.HideAllUI();
         PlayerUI ui = UIController.GetUI<PlayerUI>();
         ui.Show();
     }
 
-    public void RefreshData()
+    public void OnRefreshData()
     {
         foreach(var clan in SaveContainer.saveData.clanList)
         {

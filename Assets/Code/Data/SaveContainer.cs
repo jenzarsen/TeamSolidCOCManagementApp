@@ -80,14 +80,12 @@ public class SaveContainer : Singleton<SaveContainer>
         IsDirty = true;
     }
 
-
-#if UNITY_EDITOR
-
     [Button]
-    public void DeleteSaveData()
+    public void ClearData()
     {
-        if(File.Exists(savePath))
+        if (File.Exists(savePath))
         {
+            saveData = new();
             File.Delete(savePath);
             SetDirty();
             Debug.Log("Save deleted successfully");
@@ -97,5 +95,4 @@ public class SaveContainer : Singleton<SaveContainer>
             Debug.Log("No save file found");
         }
     }
-#endif
 }
